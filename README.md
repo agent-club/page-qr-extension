@@ -8,6 +8,8 @@
 git clone https://github.com/agent-club/page-qr-extension.git
 ```
 
+官网：[页码 Page QR](https://page-qr.iambinlin.chatgpt.site) · [隐私政策](https://page-qr.iambinlin.chatgpt.site/privacy)
+
 ## 安装到 Chrome
 
 1. 在 Chrome 地址栏打开 `chrome://extensions`。
@@ -16,6 +18,8 @@ git clone https://github.com/agent-club/page-qr-extension.git
 
 4. 点击工具栏的扩展程序拼图图标，将「页码 · Page QR」固定到工具栏。
 5. 打开一个普通网页，点击「页码」图标，当前网址的二维码即会出现。
+
+商店版本尚未提交审核。官网已部署，当前仅维护者可见，公开访问设置待确认；可先下载仓库源码，或使用 GitHub Actions 生成的本地安装包。
 
 安装时无需执行 npm 命令。请保留此目录；Chrome 会从这里读取插件文件。代码更新后，在扩展管理页面点击插件卡片的「重新加载」。卸载时先在扩展管理页面移除插件，再按需要移除这个独立目录。
 
@@ -79,7 +83,16 @@ qr.mjs                输入校验、UTF-8 二维码、Canvas/SVG 绘制
 vendor/qrcode.mjs     qrcode-generator 2.0.4，MIT 许可
 icons/                本地图标
 tests/                核心解码测试和真实浏览器测试
-VERIFICATION.md       本次验证的环境、命令、结果和限制
+VERIFICATION.md       插件验证环境、命令、结果和限制
+website/              官网首页、隐私政策与下载入口源码
+store/                Chrome 网上应用店资料、素材与发布流程
+scripts/              运行文件白名单打包脚本
 ```
 
 第三方二维码库来自 [qrcode-generator](https://github.com/kazuhikoarase/qrcode-generator)，版本固定为 2.0.4。原始版权说明保留在源码内，MIT 许可文本见 `vendor/LICENSE.qrcode-generator.txt`。`jsqr`、`pngjs`、`playwright` 仅用于开发验证。
+
+## Chrome 网上应用店发布
+
+运行 `npm run package:store` 可生成根目录带有 `manifest.json` 的运行文件 ZIP。需要 Python 3；输出位于 `dist/`，不会混入官网、测试和开发依赖。GitHub Actions 会运行语法检查、核心测试和打包。
+
+商店条目资料见 [store/LISTING.md](store/LISTING.md)，版本检查、提审和后续更新流程见 [store/RELEASE.md](store/RELEASE.md)。

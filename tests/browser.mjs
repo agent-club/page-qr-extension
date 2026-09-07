@@ -32,7 +32,7 @@ try {
   const { extensions } = await cdp.send('Extensions.getExtensions');
   const extension = extensions.find(item => item.path === root);
   assert.ok(extension?.enabled, 'Extension must load and be enabled');
-  assert.equal(extension.version, '1.0.0');
+  assert.equal(extension.version, '1.0.1');
   pass('Manifest V3 实际目录加载成功');
   await cdp.send('Browser.setDownloadBehavior', { behavior: 'allow', downloadPath: output, eventsEnabled: true });
   const downloads = [];

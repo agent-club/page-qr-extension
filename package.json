@@ -1,13 +1,18 @@
 {
   "name": "page-qr-extension",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "type": "module",
   "description": "离线生成当前网页二维码的 Chrome Manifest V3 插件",
   "scripts": {
     "check": "node --check popup.mjs && node --check qr.mjs && node --check vendor/qrcode.mjs",
     "test": "node --test tests/qr.test.mjs",
-    "test:browser": "node tests/browser.mjs"
+    "test:browser": "node tests/browser.mjs",
+    "package:store": "python3 scripts/package-extension.py"
   },
-  "devDependencies": { "jsqr": "1.4.0", "playwright": "1.58.2", "pngjs": "7.0.0" }
+  "devDependencies": {
+    "jsqr": "1.4.0",
+    "playwright": "1.58.2",
+    "pngjs": "7.0.0"
+  }
 }
