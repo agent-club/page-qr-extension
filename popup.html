@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>页码 · Page QR</title>
+    <link rel="stylesheet" href="popup.css">
+    <script type="module" src="popup.mjs"></script>
+  </head>
+  <body>
+    <main>
+      <header class="header">
+        <div class="brand"><img src="icons/icon-48.png" width="34" height="34" alt=""><div><h1>页码<span>PAGE QR</span></h1><p>把这一页，带到另一块屏幕。</p></div></div>
+        <span class="local-badge"><i></i>本地生成</span>
+      </header>
+
+      <section class="preview" aria-label="二维码预览">
+        <div class="preview-top"><span id="source-label">当前网页</span><span id="size-label">512 × 512 px</span></div>
+        <div class="qr-stage">
+          <canvas id="qr-preview" width="220" height="220" role="img" aria-label="二维码预览" hidden></canvas>
+          <div id="empty-preview" class="empty-preview"><img src="icons/icon-48.png" width="42" height="42" alt=""><p id="empty-message">正在读取当前网页…</p></div>
+        </div>
+        <p id="status" class="status" role="status" aria-live="polite">正在准备二维码</p>
+      </section>
+
+      <fieldset id="controls" disabled>
+        <div class="field-heading"><label for="content">二维码内容</label><button id="restore-url" class="text-button" type="button">恢复当前网址<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 5a5 5 0 1 1-1 4M3 1v4h4"/></svg></button></div>
+        <textarea id="content" rows="2" placeholder="输入网址或任意文字…" spellcheck="false" autocomplete="off" aria-describedby="content-count tab-notice"></textarea>
+        <div class="content-meta"><span id="tab-notice"></span><span id="content-count">0 / 2331 字节</span></div>
+
+        <div class="appearance-heading"><span>外观</span><button id="reset-style" class="text-button" type="button">重置外观</button></div>
+        <div class="appearance-grid">
+          <div class="setting"><label for="foreground">前景色</label><div class="color-field"><input id="foreground-picker" type="color" value="#163D35" aria-label="选择前景色"><input id="foreground" type="text" value="#163D35" maxlength="7" spellcheck="false" autocomplete="off" aria-label="前景色十六进制" aria-describedby="status"></div></div>
+          <div class="setting"><label for="background">背景色</label><div class="color-field"><input id="background-picker" type="color" value="#FFFFFF" aria-label="选择背景色"><input id="background" type="text" value="#FFFFFF" maxlength="7" spellcheck="false" autocomplete="off" aria-label="背景色十六进制" aria-describedby="status"></div></div>
+          <div class="setting"><label for="size">输出尺寸</label><div class="size-field"><input id="size" type="number" min="256" max="2048" step="1" value="512" inputmode="numeric" aria-describedby="status"><span>px</span></div></div>
+        </div>
+
+        <div class="downloads"><button id="download-png" class="primary-button" type="button" disabled><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2v10m-4-4 4 4 4-4M3 13v4h14v-4"/></svg>下载 PNG</button><button id="download-svg" class="secondary-button" type="button" disabled>SVG<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M4 4h8v8"/></svg></button></div>
+      </fieldset>
+      <footer><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="4" y="7" width="8" height="7" rx="2"/><path d="M5.5 7V4a2.5 2.5 0 0 1 5 0v3"/></svg><span id="storage-notice" role="status">仅记住外观，不保存网址和内容</span></footer>
+    </main>
+  </body>
+</html>
